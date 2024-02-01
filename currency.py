@@ -10,7 +10,7 @@ CURRENCIES = ["USD", "CAD", "EUR", "AUD", "CNY", "JPY", "INR", "GBP", "NZD", "CH
 
 def convert_currency(base):
     currencies = ",".join(CURRENCIES)
-    url = f"{BASE_URL}&basecurrency={base}&currencies={currencies}"
+    url = f"{BASE_URL}&base_currency={base}&currencies={currencies}"
     try:
         response = requests.get(url)
         data = response.json()
