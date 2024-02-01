@@ -15,17 +15,26 @@ def convert_currency(base):
         response = requests.get(url)
         data = response.json()
         return data["data"]
-    except Exception as e:
-        print(e)
+    except:
+        print("Invalid currency or error fetching data")
         return None
     
 
-base = input("Enter the base currency (q to quit): ").upper()
+while True:
 
-#if base not in CURRENCIES:
-    #print("Invalid currency")
+    base = input("Enter the base currency (q to quit): ").upper()
 
-data = convert_currency(base)
-del data[base]
-for ticker, value in data.items():
-    print(f"{ticker}: {value}")
+    if base == "Q":
+        break
+
+    #if base not in CURRENCIES:
+        #print("Invalid currency")
+
+    data = convert_currency(base)
+    if not data:
+        continue
+    
+    del data[base]
+
+    for ticker, value in data.items():
+        print(f"{ticker}: {value}")
